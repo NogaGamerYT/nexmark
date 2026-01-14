@@ -1,4 +1,4 @@
-name: Construir APK Android (Node 22)
+name: Construir APK Android (Limpieza Automática)
 
 on:
   push:
@@ -15,10 +15,10 @@ jobs:
       - name: 1. Clonar código
         uses: actions/checkout@v4
 
-      - name: 2. Configurar Node.js (Actualizado)
+      - name: 2. Configurar Node.js (Versión 22)
         uses: actions/setup-node@v4
         with:
-          node-version: '22' # <--- ¡AQUÍ ESTABA EL CULPABLE! Cambiado de 20 a 22.
+          node-version: '22'
 
       - name: 3. Configurar Java
         uses: actions/setup-java@v4
@@ -32,10 +32,13 @@ jobs:
       - name: 5. Construir React
         run: npm run build
 
-      - name: 6. Crear entorno Android
-        # Forzamos la instalación y creación de Android
+      - name: 6. Crear entorno Android (Limpieza y Creación)
+        # Aquí está la magia nueva:
         run: |
           npm install @capacitor/android
+          # Si existe una carpeta android (del repo), la borramos para evitar conflictos
+          rm -rf android 
+          # Creamos una versión fresca y perfecta para este servidor
           npx cap add android
 
       - name: 7. Permisos de Gradle
