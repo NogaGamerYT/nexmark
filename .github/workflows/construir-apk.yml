@@ -1,9 +1,10 @@
-name: Construir APK Android
+name: Construir APK Android (Desde Cero)
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch: # Esto permite lanzar el botón manualmente si quieres
 
 jobs:
   build:
@@ -11,35 +12,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar código
+      - name: 1. Clonar código
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      - name: 2. Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Instalar dependencias y construir React
-        run: |
-          npm install
-          npm run build
-
-      - name: Sincronizar con Capacitor
-        run: npx cap sync android
-
-      - name: Configurar Java (Necesario para Android)
+      - name: 3. Configurar Java (Vital para Android)
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Construir APK (Gradle)
+      - name: 4. Instalar dependencias
+        run: npm install
+
+      - name: 5. Construir React (Generar dist)
+        run: npm run build
+
+      - name: 6. Crear entorno Android (La magia)
+        # Aquí forzamos la creación de la carpeta android en la nube
+        # --no-deps evita que intente instalar cosas extra innecesarias
+        run: |
+          npm install @capacitor/android
+          npx cap add android
+
+      - name: 7. Permisos de Gradle
+        # Entramos a la carpeta recién creada y damos permisos
         run: |
           cd android
           chmod +x gradlew
+
+      - name: 8. Construir APK
+        run: |
+          cd android
           ./gradlew assembleDebug
 
-      - name: Subir APK generado
+      - name: 9. Subir APK generado
         uses: actions/upload-artifact@v4
         with:
           name: nexmark
