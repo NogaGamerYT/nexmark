@@ -1,10 +1,10 @@
-name: Construir APK Android (Desde Cero)
+name: Construir APK Android (Node 22)
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch: # Esto permite lanzar el botón manualmente si quieres
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,12 +15,12 @@ jobs:
       - name: 1. Clonar código
         uses: actions/checkout@v4
 
-      - name: 2. Configurar Node.js
+      - name: 2. Configurar Node.js (Actualizado)
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22' # <--- ¡AQUÍ ESTABA EL CULPABLE! Cambiado de 20 a 22.
 
-      - name: 3. Configurar Java (Vital para Android)
+      - name: 3. Configurar Java
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
@@ -29,18 +29,16 @@ jobs:
       - name: 4. Instalar dependencias
         run: npm install
 
-      - name: 5. Construir React (Generar dist)
+      - name: 5. Construir React
         run: npm run build
 
-      - name: 6. Crear entorno Android (La magia)
-        # Aquí forzamos la creación de la carpeta android en la nube
-        # --no-deps evita que intente instalar cosas extra innecesarias
+      - name: 6. Crear entorno Android
+        # Forzamos la instalación y creación de Android
         run: |
           npm install @capacitor/android
           npx cap add android
 
       - name: 7. Permisos de Gradle
-        # Entramos a la carpeta recién creada y damos permisos
         run: |
           cd android
           chmod +x gradlew
