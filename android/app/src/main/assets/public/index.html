@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NexMark</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- KaTeX CSS for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    
+    <style>
+      :root {
+        /* GitHub Dark Dimmed Palette (Default) */
+        --color-canvas-default: #22272e;
+        --color-canvas-overlay: #2d333b;
+        --color-canvas-subtle: #373e47;
+        
+        --color-fg-default: #adbac7;
+        --color-fg-muted: #768390;
+        --color-fg-subtle: #545d68;
+        
+        --color-border-default: #444c56;
+        --color-border-muted: #373e47;
+        
+        --color-btn-text: #adbac7;
+        --color-btn-bg: #373e47;
+        --color-btn-border: rgba(205, 217, 229, 0.1);
+        --color-btn-hover-bg: #444c56;
+        
+        --color-accent-fg: #539bf5;
+        --color-success-fg: #57ab5a;
+        --color-danger-fg: #e5534b;
+      }
+
+      [data-theme="light"] {
+        /* GitHub Light Palette */
+        --color-canvas-default: #ffffff;
+        --color-canvas-overlay: #f6f8fa;
+        --color-canvas-subtle: #eaeef2;
+        
+        --color-fg-default: #24292f;
+        --color-fg-muted: #57606a;
+        --color-fg-subtle: #6e7781;
+        
+        --color-border-default: #d0d7de;
+        --color-border-muted: #d8dee4;
+        
+        --color-btn-text: #24292f;
+        --color-btn-bg: #f6f8fa;
+        --color-btn-border: rgba(27, 31, 36, 0.15);
+        --color-btn-hover-bg: #f3f4f6;
+        
+        --color-accent-fg: #0969da;
+        --color-success-fg: #1a7f37;
+        --color-danger-fg: #cf222e;
+      }
+
+      body {
+        background-color: var(--color-canvas-default);
+        color: var(--color-fg-default);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--color-canvas-default); 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-border-default); 
+        border-radius: 5px;
+        border: 2px solid var(--color-canvas-default);
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-fg-subtle); 
+      }
+    </style>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              canvas: {
+                default: 'var(--color-canvas-default)',
+                overlay: 'var(--color-canvas-overlay)',
+                subtle: 'var(--color-canvas-subtle)',
+              },
+              fg: {
+                default: 'var(--color-fg-default)',
+                muted: 'var(--color-fg-muted)',
+                subtle: 'var(--color-fg-subtle)',
+              },
+              border: {
+                default: 'var(--color-border-default)',
+                muted: 'var(--color-border-muted)',
+              },
+              btn: {
+                text: 'var(--color-btn-text)',
+                bg: 'var(--color-btn-bg)',
+                border: 'var(--color-btn-border)',
+                hoverBg: 'var(--color-btn-hover-bg)',
+              },
+              accent: {
+                fg: 'var(--color-accent-fg)',
+              },
+              success: {
+                fg: 'var(--color-success-fg)',
+              },
+              danger: {
+                fg: 'var(--color-danger-fg)',
+              }
+            },
+            fontFamily: {
+              sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
+              mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
+
+<link rel="stylesheet" href="/index.css">
+  <script type="importmap">
+{
+  "imports": {
+    "@heroicons/react/": "https://esm.sh/@heroicons/react@^2.2.0/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-markdown": "https://esm.sh/react-markdown@^10.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "remark-math": "https://esm.sh/remark-math@^6.0.0",
+    "remark-gfm": "https://esm.sh/remark-gfm@^4.0.1",
+    "rehype-katex": "https://esm.sh/rehype-katex@^7.0.1",
+    "react-syntax-highlighter/": "https://esm.sh/react-syntax-highlighter@^16.1.0/",
+    "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@^16.1.0",
+    "jszip": "https://esm.sh/jszip@3.10.1"
+  }
+}
+</script>
+  <script type="module" crossorigin src="./assets/index-BNJwyXTW.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+</body>
+</html>
