@@ -1,4 +1,4 @@
-name: Construir APK Android (Limpieza Automática)
+name: Construir APK Android (Java 21)
 
 on:
   push:
@@ -20,11 +20,11 @@ jobs:
         with:
           node-version: '22'
 
-      - name: 3. Configurar Java
+      - name: 3. Configurar Java (ACTUALIZADO A 21)
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'  # <--- ¡AQUÍ ESTÁ LA SOLUCIÓN! (Antes era 17)
 
       - name: 4. Instalar dependencias
         run: npm install
@@ -33,12 +33,9 @@ jobs:
         run: npm run build
 
       - name: 6. Crear entorno Android (Limpieza y Creación)
-        # Aquí está la magia nueva:
         run: |
           npm install @capacitor/android
-          # Si existe una carpeta android (del repo), la borramos para evitar conflictos
-          rm -rf android 
-          # Creamos una versión fresca y perfecta para este servidor
+          rm -rf android
           npx cap add android
 
       - name: 7. Permisos de Gradle
